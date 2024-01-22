@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { GiHamburgerMenu } from "react-icons/gi";
+import logo from "../assets/svgs/logo.svg"
 
 const Navbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -15,7 +16,7 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between">
         {/* Logo */}
         <Link to="/">
-          <img src="images/logo.png" alt="Logo" className="w-10 h-10" />
+          <img src={logo} alt="Logo" className="w-20 h-20" />
         </Link>
 
         {/* Navigation Links (hidden on small screens) */}
