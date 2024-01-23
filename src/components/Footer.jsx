@@ -2,6 +2,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaFacebook, FaTwitter, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import logo from "../assets/images/logo-01.png"
+
 
 const Footer = () => {
   return (
@@ -10,7 +12,7 @@ const Footer = () => {
         {/* Column 1: Logo and Project Name */}
         <div className="text-center md:text-left">
           <Link to="/" className="text-xl font-bold text-white">
-            Your Project Logo
+          <img src={logo} alt="Logo" className="w-14 h-14" />
           </Link>
           <p className="text-sm mt-2">Earthquake Detection and Alert System</p>
         </div>
@@ -46,7 +48,7 @@ const Footer = () => {
         {/* Column 4: Send Email */}
         <div className="text-center md:text-left">
           <h3 className="text-lg font-bold mb-2">Contact Us</h3>
-          <a href="mailto:info@example.com" className="text-sm flex items-center space-x-2">
+          <a href="mailto:kharelansa@gmail.com" className="text-sm flex items-center space-x-2">
             <FaEnvelope />
             <span>Email Us</span>
           </a>

@@ -1,115 +1,70 @@
-// LiveDataPage.js
-import React, { useState, useEffect } from 'react';
-import { Line } from 'react-chartjs-2';
+// LiveData.js
 
-const LiveData = () => {
-  const [liveData, setLiveData] = useState({ x: 0, y: 0, z: 0 });
-  const [historicalData, setHistoricalData] = useState([]); // Placeholder for historical data
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTachometerAlt } from '@fortawesome/free-solid-svg-icons';
 
-  // Dummy function to simulate live data updates
+const DataCard = ({ label, value }) => {
+  const [prevValue, setPrevValue] = useState(value);
+
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      // Simulate live data updates
-      setLiveData({
-        x: Math.random() * 10,
-        y: Math.random() * 10,
-        z: Math.random() * 10,
-      });
+    // Set the previous value whenever the value changes
+    setPrevValue(value);
+  }, [value]);
 
-      // Simulate historical data updates
-      setHistoricalData(prevData => [...prevData, Math.random() * 10]);
-
-    }, 5000); // Update every 5 seconds
-
-    // Cleanup on component unmount
-    return () => clearInterval(intervalId);
-  }, []);
-
-  const liveDataChart = {
-    labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-    datasets: [
-      {
-        label: 'Live Data',
-        fill: false,
-        lineTension: 0.1,
-        backgroundColor: 'rgba(75,192,192,0.4)',
-        borderColor: 'rgba(75,192,192,1)',
-        borderCapStyle: 'butt',
-        borderDash: [],
-        borderDashOffset: 0.0,
-        borderJoinStyle: 'miter',
-        pointBorderColor: 'rgba(75,192,192,1)',
-        pointBackgroundColor: '#fff',
-        pointBorderWidth: 1,
-        pointHoverRadius: 5,
-        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-        pointHoverBorderColor: 'rgba(220,220,220,1)',
-        pointHoverBorderWidth: 2,
-        pointRadius: 1,
-        pointHitRadius: 10,
-        data: [liveData.x, liveData.y, liveData.z],
-      },
-    ],
-  };
-
-  const historicalDataChart = {
-    labels: Array.from({ length: historicalData.length }, (_, i) => i + 1),
-    datasets: [
-      {
-        label: 'Historical Data',
-        fill: false,
-        lineTension: 0.1,
-        backgroundColor: 'rgba(255,0,0,0.4)',
-        borderColor: 'rgba(255,0,0,1)',
-        borderCapStyle: 'butt',
-        borderDash: [],
-        borderDashOffset: 0.0,
-        borderJoinStyle: 'miter',
-        pointBorderColor: 'rgba(255,0,0,1)',
-        pointBackgroundColor: '#fff',
-        pointBorderWidth: 1,
-        pointHoverRadius: 5,
-        pointHoverBackgroundColor: 'rgba(255,0,0,1)',
-        pointHoverBorderColor: 'rgba(220,220,220,1)',
-        pointHoverBorderWidth: 2,
-        pointRadius: 1,
-        pointHitRadius: 10,
-        data: historicalData,
-      },
-    ],
+  const iconStyle = {
+    fontSize: '3rem',
+    transition: 'transform 0.5s ease',
+    transform: value > prevValue ? 'rotate(0deg)' : 'rotate(180deg)',
   };
 
   return (
-    <div>
-      <h2>Live Seismic Data</h2>
-
-      {/* Live Data Cards */}
-      <div className="flex justify-around mb-8">
-        <div className="bg-gray-200 p-4 rounded">
-          <h3>X-Axis</h3>
-          <p>{liveData.x}</p>
-        </div>
-        <div className="bg-gray-200 p-4 rounded">
-          <h3>Y-Axis</h3>
-          <p>{liveData.y}</p>
-        </div>
-        <div className="bg-gray-200 p-4 rounded">
-          <h3>Z-Axis</h3>
-          <p>{liveData.z}</p>
-        </div>
+    <div className="max-w-xs mx-auto mt-4 bg-white border p-4 rounded-md shadow-md transition-transform transform scale-100 hover:scale-105">
+      <div className="flex items-center justify-center mb-4">
+        <FontAwesomeIcon icon={faTachometerAlt} style={{ ...iconStyle, color: 'black' }} />
       </div>
-
-      {/* Live Data Chart */}
-      <div>
-        <h3>Live Data Chart</h3>
-        <Line data={liveDataChart} />
+      <h3 className="text-lg font-semibold">{label} Value:</h3>
+      <div className="flex items-center mt-2">
+        <p className={`text-xl ${value > prevValue ? 'text-green-500' : 'text-red-500'}`}>
+          {value}
+        </p>
       </div>
+    </div>
+  );
+};
 
-      {/* Historical Data Chart */}
-      <div className="mt-8">
-        <h3>Historical Data Chart</h3>
-        <Line data={historicalDataChart} />
-      </div>
+const LiveData = () => {
+  const [xdata, setXData] = useState(0);
+  const [ydata, setYData] = useState(0);
+  const [zdata, setZData] = useState(0);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://harlequin-gharial-slip.cyclic.app');
+        setXData(response.data.data[0].x);
+        setYData(response.data.data[0].y);
+        setZData(response.data.data[0].z);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+
+    // Simulating live data updates every 5 seconds
+    const intervalId = setInterval(fetchData, 5000);
+
+    // Cleanup the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []);
+
+  return (
+    <div className="container mx-auto p-8 flex flex-col items-center md:flex-row md:justify-center">
+      <DataCard label="X" value={xdata} />
+      <DataCard label="Y" value={ydata} />
+      <DataCard label="Z" value={zdata} />
     </div>
   );
 };
