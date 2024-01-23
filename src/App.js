@@ -5,6 +5,7 @@ import {Routes , Route} from 'react-router-dom';
 import Home from './pages/Home';
 import LiveData from './pages/LiveData';
 import SafetyMeasures from './pages/Safety';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
 
  </Routes>
 
-
+<Footer/>
 </>
   );
 }

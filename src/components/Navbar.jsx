@@ -21,9 +21,9 @@ const Navbar = () => {
 
         {/* Navigation Links (hidden on small screens) */}
         <div className={`hidden md:flex space-x-10 ${isMenuOpen ? 'hidden' : ''}`}>
-          <Link to="/" className="text-slate-200 text-xl font-medium">Home</Link>
-          <Link to="/" className="text-slate-200 text-xl font-medium">Live Data</Link>
-          <Link to="/" className="text-slate-200 text-xl font-medium">Safety Measures</Link>
+          <Link to="/home" className="text-slate-200 text-xl font-medium">Home</Link>
+          <Link to="/live-data" className="text-slate-200 text-xl font-medium">Live Data</Link>
+          <Link to="/safety" className="text-slate-200 text-xl font-medium">Safety Measures</Link>
           <Link to="/" className="text-slate-200 text-xl font-medium">About</Link>
           <Link to="/" className="text-slate-200 text-xl font-medium">Contact Us</Link>
         </div>
@@ -38,9 +38,9 @@ const Navbar = () => {
         {/* Responsive Menu (visible when isMenuOpen is true) */}
         {isMenuOpen && (
           <div className="md:hidden absolute top-16 right-4 bg-white p-4 space-y-2 flex flex-col">
-            <Link to="/" className="text-[#0284c7] text-xl font-medium">Home</Link>
-            <Link to="/" className="text-[#0284c7] text-xl font-medium">Live Data</Link>
-            <Link to="/" className="text-[#0284c7] text-xl font-medium">Safety Measures</Link>
+            <Link to="/home" className="text-[#0284c7] text-xl font-medium">Home</Link>
+            <Link to="/live-data" className="text-[#0284c7] text-xl font-medium">Live Data</Link>
+            <Link to="/safety" className="text-[#0284c7] text-xl font-medium">Safety Measures</Link>
             <Link to="/" className="text-[#0284c7] text-xl font-medium">About</Link>
             <Link to="/" className="text-[#0284c7] text-xl font-medium">Contact Us</Link>
           </div>

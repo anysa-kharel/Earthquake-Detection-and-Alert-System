@@ -14,17 +14,19 @@ const HeroSection = () => {
         {/* Text content (on the left) */}
         <div className="md:w-1/2 lg:w-1/3 xl:w-1/2 mx-4 md:mx-8 lg:mx-12">
           {/* Heading */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Your Heading Goes Here</h1>
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-10">Navigating Earthquakes: A Guide to Safety and Preparedness</h1>
           
           {/* Subheading */}
-          <p className="text-lg md:text-xl lg:text-2xl mb-6">
-            Your subheading goes here. Provide a brief description or tagline.
+          <p className="text-lg md:text-xl lg:text-2xl mb-10 ">
+          Stay Informed, Stay Safe: The Ultimate Preparedness Companion
           </p>
           
+        
           {/* CTA Button */}
-          <Link to="/your-link" className="bg-primary text-slate-200 py-2 px-4 rounded-full font-bold text-lg hover:bg-gray-200 transition duration-300">
-            Call-to-Action
+          <Link to="/" className="bg-primary text-slate-200 py-4 px-8 rounded-full font-bold text-lg hover:bg-gray-200 hover:text-primary transition duration-300">
+            See More
           </Link>
+        
         </div>
 
         <img

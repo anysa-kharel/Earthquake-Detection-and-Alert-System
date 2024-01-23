@@ -122,7 +122,7 @@ const SafetyMeasures = () => {
  </ul>
 <br/>
  <h3 className="text-xl text-primary font-semibold mb-2">After</h3>
-        <ul className="list-disc pl-4">
+        <ul className="list-disc pl-4 mb-8">
 
         <li>Check for injuries. Render first aid. Do not move seriously injured victims unless they are in immediate danger.</li>
   <li>Do not use the telephone immediately unless there is a serious injury, fire, or other emergency.</li>
