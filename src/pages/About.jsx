@@ -12,16 +12,12 @@ const About = () => {
 
       {/* Arduino Uno */}
       <div className="mb-8">
-        <h3 className="text-xl text-primary font-semibold mb-2">1. Arduino Uno</h3>
+        <h3 className="text-xl text-primary font-semibold mb-2">1. Arduino Nano</h3>
         <p>
-          The Arduino Uno is a microcontroller board based on the ATmega328P. It serves as
-          the project's central processing unit, controlling and coordinating the actions of various
-          components. Programmed using the Arduino IDE, the Arduino Uno reads sensor data,
-          processes information, and executes predefined tasks. It acts as the main interface
-          between hardware components and the software logic.
+        The Arduino Nano is a small, complete, and breadboard-friendly board based on the ATmega328 (Arduino Nano 3.x). It has more or less the same functionality of the Arduino Duemilanove, but in a different package. It lacks only a DC power jack, and works with a Mini-B USB cable instead of a standard one.
         </p>
         <img src={arduinoImage} alt="Arduino Uno" className="w-auto h-96 mt-4 mx-auto" />
-        <p className="text-center mt-4 font-medium">Figure 1: Arduino Uno</p>
+        <p className="text-center mt-4 font-medium">Figure 1: Arduino Nano</p>
       </div>
 
       {/* GSM Module */}
