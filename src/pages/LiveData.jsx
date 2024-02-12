@@ -204,7 +204,9 @@ const LiveData = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/');
+        // const response = await axios.get("http://192.168.190.132:5000");
+        const response = await axios.get("http://192.168.190.132:5000");
+        
         const len=response.data.length;
         setXData(response.data[len-1].x);
         setYData(response.data[len-1].y);
@@ -238,7 +240,8 @@ const LiveData = () => {
 
     const fetchDummy= async () => {
       try {
-        const response = await axios.get('http://localhost:5000/scam');
+        // const response = await axios.get('http://localhost:5000/scam');
+        const response = await axios.get('http://192.168.190.132:5000/scam');
         
       
       
